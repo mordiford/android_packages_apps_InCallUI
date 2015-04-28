@@ -48,8 +48,6 @@ public class ProximitySensor implements AccelerometerListener.ChangeListener,
 
     private static final String TAG = ProximitySensor.class.getSimpleName();
 
-    private static final String PROXIMITY_SENSOR = "proximity_sensor";
-
     private final PowerManager mPowerManager;
     private SensorManager mSensor;
     private Sensor mProxSensor;
@@ -291,7 +289,7 @@ public class ProximitySensor implements AccelerometerListener.ChangeListener,
                     || AudioState.ROUTE_BLUETOOTH == audioMode
                     || mIsHardKeyboardOpen);
             screenOnImmediately |= Settings.System.getInt(mContext.getContentResolver(),
-                    PROXIMITY_SENSOR, 1) == 0;
+                    Settings.System.IN_CALL_PROXIMITY_SENSOR, 1) == 0;
 
             // We do not keep the screen off when the user is outside in-call screen and we are
             // horizontal, but we do not force it on when we become horizontal until the

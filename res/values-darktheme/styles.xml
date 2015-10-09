@@ -28,7 +28,7 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="dialpad_key_button_touch_tint">@color/incall_dialpad_touch_tint</item>
         <item name="android:textColorPrimary">@color/incall_call_banner_text_color</item>
-        <item name="android:colorPrimaryDark">@color/dialer_theme_color_dark</item>
+        <item name="android:colorPrimaryDark">#3F51B5</item>
         <item name="android:popupMenuStyle">@style/InCallPopupMenuStyle</item>
         <item name="android:actionBarStyle">@style/InCallActionBarStyle</item>
         <item name="android:buttonStyleToggle">@style/InCallCompoundButton</item>
@@ -39,8 +39,7 @@
     </style>
 
     <style name="InCallActionBarStyle" parent="@android:style/Widget.Material.ActionBar">
-        <item name="android:background">@color/incall_action_bar_background_color</item>
-        <item name="android:textColor">@color/incall_action_bar_text_color</item>
+        <item name="android:background">#3F51B5</item>
     </style>
 
 </resources>

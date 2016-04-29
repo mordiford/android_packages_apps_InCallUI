@@ -32,7 +32,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
-import android.provider.Settings;
 import android.telecom.CallAudioState;
 import android.telecom.InCallService.VideoCall;
 import android.telecom.PhoneAccount;
@@ -61,8 +60,6 @@ import com.cyanogen.ambient.incall.InCallServices;
 import com.cyanogen.ambient.incall.extension.OriginCodes;
 import com.cyanogen.ambient.incall.extension.StatusCodes;
 import com.cyanogen.ambient.incall.extension.StartCallRequest;
-
-import cyanogenmod.providers.CMSettings;
 
 import java.util.List;
 import java.util.Objects;
@@ -581,13 +578,6 @@ public class CallButtonPresenter extends Presenter<CallButtonPresenter.CallButto
                 QtiCallUtils.hasVoiceCapabilities(mCall));
     }
 
-    private boolean isDeviceProvisionedInSettingsDb(Context context) {
-        return (CMSettings.Secure.getInt(context.getContentResolver(),
-                CMSettings.Secure.CM_SETUP_WIZARD_COMPLETED, 0) != 0)
-                && (Settings.Global.getInt(context.getContentResolver(),
-                Settings.Global.DEVICE_PROVISIONED, 0) != 0);
-    }
-
     /**
      * Updates the buttons applicable for the UI.
      *
@@ -619,8 +609,7 @@ public class CallButtonPresenter extends Presenter<CallButtonPresenter.CallButto
                 (QtiCallUtils.hasVideoCapabilities(call) ||
                         QtiCallUtils.hasVoiceCapabilities(call) ||
                         (contactInCallPlugins != null && !contactInCallPlugins.isEmpty())) &&
-                (callState == Call.State.ACTIVE || callState == Call.State.ONHOLD)
-                && isDeviceProvisionedInSettingsDb(ui.getContext());
+                (callState == Call.State.ACTIVE || callState == Call.State.ONHOLD);
 
         final boolean showMute = call.can(android.telecom.Call.Details.CAPABILITY_MUTE);
         final boolean showAddParticipant = call.can(
